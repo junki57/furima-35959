@@ -5,16 +5,13 @@
 | Column                | Type           | Option           |
 | --------------------- | -------------- | ---------------- |
 | nickname              | string         | null: false      |
-| email                 | string         | null: false      |
+| email                 | string         | null: false, unique: true      |
 | encrypted_password    | string         | null: false      |
-| password_confirmation | string         | null: false      |
 | first_name            | string         | null: false      |
 | family_name           | string         | null: false      |
 | first_name_kana       | string         | null: false      |
 | family_name_kana      | string         | null: false      |
-| birth_year            | integer        | null: false      |
-| birth_month           | integer        | null: false      | 
-| birth_day             | integer        | null: false      |
+| birthday              | date           | null: false      |
 
 ### Association
 
@@ -26,47 +23,45 @@
 | Column                | Type           | Option           |
 | --------------------- | -------------- | ---------------- |
 | name                  | string         | null: false      |
-| introduction          | string         | null: false      |
-| image                 |                | null: false      |
+| introduction          | text           | null: false      |
 | category              | string         | null: false      |
-| item_condition        | string         | null: false      |
-| postage               | string         | null: false      |
-| region                | string         | null: false      |
-| shopping_date         | integer        | null: false      |
+| item_condition_id     | integer        | null: false      |
+| postage_id            | integer        | null: false      |
+| prefecture_id         | integer        | null: false      |
+| shopping_date_id      | integer        | null: false      |
 | price                 | integer        | null: false      |
-| user_id               | string         | null: false      |
+| user                  | references     | null: false , foreign_key: true     |
 
 ### Association
 
-- belongs_to : users
+- belongs_to : user
 - has_many : purchases
 
 ## purchases table
 
 | Column                | Type           | Option           |
 | --------------------- | -------------- | ---------------- |
-| user_id               | string         | null: false      |
-| item_id               | string         | null: false      |
-| residence_id          | string         | null: false      |
+| user                  | references     | null: false , foreign_key: true     |
+| item                  | references     | null: false , foreign_key: true     |
 
 ### Association
 
-- belongs_to : users
-- belongs_to : items
-- belongs_to : residences
+- belongs_to : user
+- belongs_to : item
+- belongs_to : residence
 
 ## residences table
 
-|Column                | Type           | Option           |
+|Column                | Type            | Option           |
 | --------------------- | -------------- | ---------------- |
-| postcode              | integer        | null: false      |
+| postcode              | string        | null: false      |
 | prefecture            | integer        | null: false      |
 | city                  | string         | null: false      |
-| block                 | integer        | null: false      |
-| building              | string         | null: false      |
-| phone_number          | integer        | null: false      |
+| block                 | string         | null: false      |
+| building              | string         |                  |
+| phone_number          | string         | null: false      |
 
 ### Association
 
 - has_one : purchase
-- belongs_to : users
+- belongs_to : user
