@@ -24,7 +24,7 @@
 | --------------------- | -------------- | ---------------- |
 | name                  | string         | null: false      |
 | introduction          | text           | null: false      |
-| category_id           | string         | null: false      |
+| category_id           | integer         | null: false      |
 | item_condition_id     | integer        | null: false      |
 | postage_id            | integer        | null: false      |
 | prefecture_id         | integer        | null: false      |
