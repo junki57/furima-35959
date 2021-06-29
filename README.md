@@ -24,7 +24,7 @@
 | --------------------- | -------------- | ---------------- |
 | name                  | string         | null: false      |
 | introduction          | text           | null: false      |
-| category              | string         | null: false      |
+| category_id           | string         | null: false      |
 | item_condition_id     | integer        | null: false      |
 | postage_id            | integer        | null: false      |
 | prefecture_id         | integer        | null: false      |
@@ -35,7 +35,7 @@
 ### Association
 
 - belongs_to : user
-- has_many : purchases
+- has_one : purchase
 
 ## purchases table
 
@@ -48,14 +48,14 @@
 
 - belongs_to : user
 - belongs_to : item
-- belongs_to : residence
+- has_one     : residence
 
 ## residences table
 
-|Column                | Type            | Option           |
+|Column                 | Type            | Option           |
 | --------------------- | -------------- | ---------------- |
-| postcode              | string        | null: false      |
-| prefecture            | integer        | null: false      |
+| postcode              | string         | null: false      |
+| prefecture_id         | integer        | null: false      |
 | city                  | string         | null: false      |
 | block                 | string         | null: false      |
 | building              | string         |                  |
@@ -63,5 +63,4 @@
 
 ### Association
 
-- has_one : purchase
-- belongs_to : user
+- belongs_to : purchase
