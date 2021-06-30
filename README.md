@@ -24,7 +24,7 @@
 | --------------------- | -------------- | ---------------- |
 | name                  | string         | null: false      |
 | introduction          | text           | null: false      |
-| category_id           | integer         | null: false      |
+| category_id           | integer        | null: false      |
 | item_condition_id     | integer        | null: false      |
 | postage_id            | integer        | null: false      |
 | prefecture_id         | integer        | null: false      |
@@ -52,7 +52,7 @@
 
 ## residences table
 
-|Column                 | Type            | Option           |
+|Column                 | Type           | Option           |
 | --------------------- | -------------- | ---------------- |
 | postcode              | string         | null: false      |
 | prefecture_id         | integer        | null: false      |
