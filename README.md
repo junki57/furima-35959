@@ -48,7 +48,7 @@
 
 - belongs_to : user
 - belongs_to : item
-- has_one     : residence
+- has_one    : residence
 
 ## residences table
 
