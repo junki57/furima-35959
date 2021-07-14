@@ -10,7 +10,9 @@
       <%= image_tag (@item.image) ,class:"item-box-img" %>
       
       <div class="sold-out">
-        <span>Sold Out!!</span>
+        <% if @item.purchase.present?%> 
+          <span>Sold Out!!</span>
+        <% end %>
       </div>
      
     </div>
