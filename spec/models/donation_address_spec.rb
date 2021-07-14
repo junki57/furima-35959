@@ -41,5 +41,10 @@ RSpec.describe DonationAddress, type: :model do
       @donation_address.valid?
       expect(@donation_address.errors.full_messages).to include("Phone number is invalid")
     end
+    it "tokenが空だと登録できない" do
+      @donation_address.token = nil
+      @donation_address.valid?
+      expect(@donation_address.errors.full_messages).to include("Token can't be blank")
+    end
   end
 end
