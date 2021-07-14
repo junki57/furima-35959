@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
   before_action :items_params, only:[:create, :index]
   before_action :contributor_confirmation, only: [:create, :index]
 
