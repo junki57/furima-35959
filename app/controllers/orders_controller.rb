@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
   private
 
   def donation_params
-    params.require(:donation_address).permit(:user_id, :item_id, :postcode, :prefecture_id, :city, :block, :building, :phone_number, :purchase).merge(
+    params.require(:donation_address).permit(:postcode, :prefecture_id, :city, :block, :building, :phone_number, :purchase).merge(
       user_id: current_user.id, item_id: params[:item_id], token: params[:token]
     )
   end
