@@ -8,6 +8,8 @@ class DonationAddress
     validates :block
     validates :phone_number, format: { with: /\A\d{10,11}\z/ }
     validates :token
+    validates :user_id
+    validates :item_id
   end
   validates :prefecture_id, numericality: { other_than: 1 }
 
