@@ -24,77 +24,77 @@ RSpec.describe DonationAddress, type: :model do
       it 'postcodeが空だと登録できない' do
         @donation_address.postcode = ''
         @donation_address.valid?
-        expect(@donation_address.errors.full_messages).to include("Postcode can't be blank")
+        expect(@donation_address.errors.full_messages).to include("郵便番号を入力してください")
       end
       it 'postcodeが「3桁ハイフン4桁」の半角文字列でないと登録できない' do
         @donation_address.postcode = '00-000'
         @donation_address.valid?
-        expect(@donation_address.errors.full_messages).to include('Postcode is invalid')
+        expect(@donation_address.errors.full_messages).to include('郵便番号は不正な値です')
       end
       it 'postcodeにハイフンがないと登録できない' do
         @donation_address.postcode = '0000000'
         @donation_address.valid?
-        expect(@donation_address.errors.full_messages).to include('Postcode is invalid')
+        expect(@donation_address.errors.full_messages).to include('郵便番号は不正な値です')
       end
       it 'prefecture_idが空だと登録できない' do
         @donation_address.prefecture_id = ''
         @donation_address.valid?
-        expect(@donation_address.errors.full_messages).to include('Prefecture is not a number')
+        expect(@donation_address.errors.full_messages).to include('発送先の地域は数値で入力してください')
       end
       it 'prefecture_idが1だと登録できない' do
         @donation_address.prefecture_id = '1'
         @donation_address.valid?
-        expect(@donation_address.errors.full_messages).to include('Prefecture must be other than 1')
+        expect(@donation_address.errors.full_messages).to include('発送先の地域は1以外の値にしてください')
       end
       it 'cityが空だと登録できない' do
         @donation_address.city = ''
         @donation_address.valid?
-        expect(@donation_address.errors.full_messages).to include("City can't be blank")
+        expect(@donation_address.errors.full_messages).to include("市区町村を入力してください")
       end
       it 'blockが空だと登録できない' do
         @donation_address.block = ''
         @donation_address.valid?
-        expect(@donation_address.errors.full_messages).to include("Block can't be blank")
+        expect(@donation_address.errors.full_messages).to include("番地を入力してください")
       end
       it 'phone_numberが空だと登録できない' do
         @donation_address.phone_number = ''
         @donation_address.valid?
-        expect(@donation_address.errors.full_messages).to include("Phone number can't be blank")
+        expect(@donation_address.errors.full_messages).to include("電話番号を入力してください")
       end
       it 'phone_numberが10桁以上11桁以内の半角数値でなければ登録できない' do
         @donation_address.phone_number = '090123456'
         @donation_address.valid?
-        expect(@donation_address.errors.full_messages).to include('Phone number is invalid')
+        expect(@donation_address.errors.full_messages).to include('電話番号は不正な値です')
       end
       it 'phone_numberが12桁以上では登録できない' do
         @donation_address.phone_number = '000000000000'
         @donation_address.valid?
-        expect(@donation_address.errors.full_messages).to include('Phone number is invalid')
+        expect(@donation_address.errors.full_messages).to include('電話番号は不正な値です')
       end
       it 'phone_numberが英数混合では登録できない' do
         @donation_address.phone_number = 'a123456789'
         @donation_address.valid?
-        expect(@donation_address.errors.full_messages).to include('Phone number is invalid')
+        expect(@donation_address.errors.full_messages).to include('電話番号は不正な値です')
       end
       it 'phone_numberが全角数字だと登録できない' do
         @donation_address.phone_number = '０００００００００００'
         @donation_address.valid?
-        expect(@donation_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@donation_address.errors.full_messages).to include("電話番号は不正な値です")
       end
       it 'tokenが空だと登録できない' do
         @donation_address.token = nil
         @donation_address.valid?
-        expect(@donation_address.errors.full_messages).to include("Token can't be blank")
+        expect(@donation_address.errors.full_messages).to include("Tokenを入力してください")
       end
       it 'user_idが空だと登録できない' do
         @donation_address.user_id = nil
         @donation_address.valid?
-        expect(@donation_address.errors.full_messages).to include("User can't be blank")
+        expect(@donation_address.errors.full_messages).to include("ユーザーを入力してください")
       end
       it 'item_idが空だと登録できない' do
         @donation_address.item_id = nil
         @donation_address.valid?
-        expect(@donation_address.errors.full_messages).to include("Item can't be blank")
+        expect(@donation_address.errors.full_messages).to include("商品を入力してください")
       end
     end
   end
