@@ -5,6 +5,8 @@ class OrdersController < ApplicationController
 
   def index
     @donation_address = DonationAddress.new
+    # Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    # @card = Card.find_by(user_id: current_user.id)
   end
 
   def create
