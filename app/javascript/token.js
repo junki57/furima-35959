@@ -1,7 +1,12 @@
 const pay = () => {
-  Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY);
-    const submit = document.getElementById("charge-form"); 
-    submit.addEventListener("click", (e) => { // イベント発火
+  const saveCard = document.getElementById("save_card")
+  if (document.getElementById("save_card")) {
+  return saveCard;
+  };
+  // if(!document.getElementById("charge-form")) return true
+  Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY); // PAY.JPテスト公開鍵
+  const submit = document.getElementById("charge-form");
+  submit.addEventListener("submit", (e) => {
     e.preventDefault();
    
     const formResult = document.getElementById("charge-form");
@@ -15,11 +20,12 @@ const pay = () => {
     };
 
     Payjp.createToken(card, (status, response) => {
-      if (status === 200) {
+      if (status == 200) {
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
-        const tokenObj = `<input value=${token} name='card_token' type="hidden">`;
+        const tokenObj = `<input value=${token} name='token' type="hidden">`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
+      
       }
 
       document.getElementById("number").removeAttribute("name");

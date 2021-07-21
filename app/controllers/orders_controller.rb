@@ -5,22 +5,29 @@ class OrdersController < ApplicationController
 
   def index
     @donation_address = DonationAddress.new
-    # Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-    # @card = Card.find_by(user_id: current_user.id)
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    card = Card.find_by(user_id: current_user.id)
+
+    if card.present?
+      customer = Payjp::Customer.retrieve(card.customer_token)
+      @card = customer.cards.first
+    end
   end
 
   def create
     @donation_address = DonationAddress.new(donation_params)
-    items_params
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    card = Card.find_by(user_id: current_user.id)
+    if card.present?
+      customer = Payjp::Customer.retrieve(card.customer_token)
+      @card = customer.cards.first
+      @donation_address.token = current_user.card.customer_token
+    end
+
     if @donation_address.valid?
-      Payjp.api_key = ENV['PAYJP_SECRET_KEY']
-      Payjp::Charge.create(
-        amount: @item.price,  # 商品の値段
-        card: donation_params[:token], # カードトークン
-        currency: 'jpy'                 # 通貨の種類（日本円）
-      )
-      @donation_address.save
-      redirect_to root_path
+       pay_item
+       @donation_address.save
+       redirect_to root_path
     else
       render :index
     end
@@ -40,5 +47,24 @@ class OrdersController < ApplicationController
 
   def contributor_confirmation
     redirect_to root_path if current_user == @item.user || !@item.purchase.nil?
+  end
+
+  def pay_item
+    if @card.present?
+      Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+      customer_token = current_user.card.customer_token
+      Payjp::Charge.create(
+        amount: @item.price,
+        customer: customer_token,
+        currency: 'jpy'
+      )
+    else
+      Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+      Payjp::Charge.create(
+        amount: @item.price,
+        card: donation_params[:token],
+        currency: 'jpy'
+      )
+    end
   end
 end
