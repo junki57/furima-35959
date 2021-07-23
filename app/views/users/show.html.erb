@@ -1,3 +1,4 @@
+<% breadcrumb :my_user %>
 <%= render "shared/second-header"%>
     <div class="accountpage">
   <div class="AccountPage__title">
@@ -24,7 +25,7 @@
     <%= form_for(current_user) do |f| %>
       <div class="FormField">
         <div class="FormField__name">
-          <%= f.label :name %>
+          <%= f.label :nickname %>
         </div>
         <div class="FormField__name">
           <%= f.text_field :nickname, autofocus: true %>

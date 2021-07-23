@@ -1,28 +1,35 @@
 crumb :root do
-  link "Home", root_path
+  link "トップページ", root_path
 end
-
-# crumb :projects do
-#   link "Projects", projects_path
-# end
-
-# crumb :project do |project|
-#   link project.name, project_path(project)
-#   parent :projects
-# end
-
-# crumb :project_issues do |project|
-#   link "Issues", project_issues_path(project)
-#   parent :project, project
-# end
-
-# crumb :issue do |issue|
-#   link issue.title, issue_path(issue)
-#   parent :project_issues, issue.project
-# end
-
-# If you want to split your breadcrumbs configuration over multiple files, you
-# can create a folder named `config/breadcrumbs` and put your configuration
-# files there. All *.rb files (e.g. `frontend.rb` or `products.rb`) in that
-# folder are loaded and reloaded automatically when you change them, just like
-# this file (`config/breadcrumbs.rb`).
+crumb :new_item do
+  link "商品出品ページ", new_item_path
+  parent :root
+end
+crumb :show_item do
+  link "商品詳細ページ", item_path
+  parent :root
+end
+crumb :edit_item do
+  link "商品編集ページ", edit_item_path
+  parent :show_item
+end
+crumb :new_card do
+  link "クレジットカード登録", new_card_path
+  parent :root
+end
+crumb :my_user do
+  link "マイページ", user_path
+  parent :root
+end
+crumb :orders_item do
+  link "商品購入ページ", item_orders_path
+  parent :root
+end
+crumb :sign_up do
+  link "新規登録", new_user_registration_path
+  parent :root
+end
+crumb :sign_in do
+  link "ログイン", new_user_session_path
+  parent :root
+end
