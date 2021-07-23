@@ -17,6 +17,8 @@
 
 - has_many : items
 - has_many : purchases
+- has_many :sns_credentials
+- has_one :card
 
 ## items table
 
@@ -64,3 +66,27 @@
 ### Association
 
 - belongs_to : purchase
+
+## card table
+
+|Column                 | Type           | Option           |
+| --------------------- | -------------- | ---------------- |
+| customer_token        | string         | null: false      |
+| user                  | references     | null: false , foreign_key |
+
+### Association
+
+- belongs_to : user
+
+## sns_credential table
+
+|Column                 | Type           | Option           |
+| --------------------- | -------------- | ---------------- |
+| provider              | string         |                  |
+| uid                   | string         |                  |
+| user                  | references     | null: false , foreign_key |
+
+
+### Association
+
+- belongs_to :user
